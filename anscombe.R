@@ -9,7 +9,7 @@ library(xtable)
 library(ascii)
 library(pander)
 library("ggplot2")
-setwd("/Users/fmz/Desktop/anscombe")
+setwd("/Users/icke/Documents/anscombe-quartet-in-cran")
 ascii(anscombe)
 # |=============================================================================
 # 1.1+| h| x1    h| x2    h| x3    h| x4    h| y1    h| y2   h| y3    h| y4
@@ -88,11 +88,17 @@ anscombe.data <- rbind(anscombe.1, anscombe.2, anscombe.3, anscombe.4)
 png(filename="output.png",width=2000,height=2000)
 
 theme_set(theme_bw(base_size=42, base_family="CamingoCode"))
+# Scatter plot
 gg <- ggplot(anscombe.data, aes(x = x, y = y))
 gg <- gg + geom_smooth(lty= "dotted",size=1,color = "#ff908d",formula = y ~ x, method = "lm", se = FALSE, data = anscombe.data)
 gg <- gg + geom_point(color = "black", size=13,shape = 21,fill="grey")
 gg <- gg + facet_wrap(~Set, ncol = 2)
-
 gg
 
+# boxplot
+summary(anscombe.data)
+bp <-  ggplot(anscombe.data, aes(x = x, y = y))
+bp <- bp + geom_boxplot( formula = y ~ x , method = "lm", se= FALSE)
+bp <- bp + facet_grid(~Set)
+bp
 dev.off()
