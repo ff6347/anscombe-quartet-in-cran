@@ -87,7 +87,7 @@ anscombe.4 <- data.frame(x = anscombe[["x4"]], y = anscombe[["y4"]], Set = "Ansc
 anscombe.data <- rbind(anscombe.1, anscombe.2, anscombe.3, anscombe.4)
 png(filename="output.png",width=2000,height=2000)
 
-theme_set(theme_bw(base_size=42, base_family="CamingoCode"))
+theme_set(theme_bw(base_size=42, base_family="Vollkorn"))
 gg <- ggplot(anscombe.data, aes(x = x, y = y))
 gg <- gg + geom_smooth(lty= "dotted",size=1,color = "#ff908d",formula = y ~ x, method = "lm", se = FALSE, data = anscombe.data)
 gg <- gg + geom_point(color = "black", size=13,shape = 21,fill="grey")
