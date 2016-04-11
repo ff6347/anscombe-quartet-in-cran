@@ -21,6 +21,7 @@ setwd("/Users/icke/Documents/anscombe-quartet-in-cran")
 # font_import(pattern="Humor Sans")
 CairoFontMatch(fontpattern="xkcd",sort=FALSE,verbose=FALSE)
 CairoFonts( regular="xkcd:style=Regular" )
+
 ascii(anscombe)
 # |=============================================================================
 # 1.1+| h| x1    h| x2    h| x3    h| x4    h| y1    h| y2   h| y3    h| y4
@@ -96,11 +97,17 @@ anscombe.3 <- data.frame(x = anscombe[["x3"]], y = anscombe[["y3"]], Set = "Ansc
 anscombe.4 <- data.frame(x = anscombe[["x4"]], y = anscombe[["y4"]], Set = "Anscombe Set 4")
 
 anscombe.data <- rbind(anscombe.1, anscombe.2, anscombe.3, anscombe.4)
-png(filename="output.png",width=2000,height=2000)
+# png(filename="output.png",width=2000,height=2000)
 
+
+theme_set(theme_bw(base_size=12, base_family="Vollkorn"))
+
+<<<<<<< HEAD
 theme_set(theme_bw(base_size=42, base_family="Vollkorn"))
 # theme_set( theme_xkcd())
 # Scatter plot
+=======
+>>>>>>> 6d86f38387e8442a9de134cfe93d3423504ba83e
 gg <- ggplot(anscombe.data, aes(x = x, y = y))
 gg <- gg + geom_smooth(lty= "dotted",size=1,color = "#ff908d",formula = y ~ x, method = "lm", se = FALSE, data = anscombe.data)
 gg <- gg + geom_point(color = "black", size=13,shape = 21,fill="grey")
@@ -116,4 +123,4 @@ bp <-  ggplot(anscombe.data, aes(x = x, y = y))
 bp <- bp + geom_boxplot(fill = "grey80", colour = "#3366FF", formula = y ~ x , method = "lm", se= FALSE)
 bp <- bp + facet_grid(~Set)
 bp
-dev.off()
+# dev.off()
