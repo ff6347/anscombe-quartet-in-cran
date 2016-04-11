@@ -5,11 +5,22 @@ install.packages("xtable");
 install.packages("ascii");
 install.packages("ggplot2");
 install.packages("pander");
+install.packages("xkcd");
+install.packages("sysfonts");
+install.packages("extrafont");
+install.packages("Cairo");
+library(Cairo)
+# library(extrafont)
+# library(sysfonts)
+library(xkcd)
 library(xtable)
 library(ascii)
 library(pander)
 library("ggplot2")
 setwd("/Users/icke/Documents/anscombe-quartet-in-cran")
+# font_import(pattern="Humor Sans")
+CairoFontMatch(fontpattern="xkcd",sort=FALSE,verbose=FALSE)
+CairoFonts( regular="xkcd:style=Regular" )
 ascii(anscombe)
 # |=============================================================================
 # 1.1+| h| x1    h| x2    h| x3    h| x4    h| y1    h| y2   h| y3    h| y4
@@ -88,11 +99,13 @@ anscombe.data <- rbind(anscombe.1, anscombe.2, anscombe.3, anscombe.4)
 png(filename="output.png",width=2000,height=2000)
 
 theme_set(theme_bw(base_size=42, base_family="Vollkorn"))
+# theme_set( theme_xkcd())
 # Scatter plot
 gg <- ggplot(anscombe.data, aes(x = x, y = y))
 gg <- gg + geom_smooth(lty= "dotted",size=1,color = "#ff908d",formula = y ~ x, method = "lm", se = FALSE, data = anscombe.data)
 gg <- gg + geom_point(color = "black", size=13,shape = 21,fill="grey")
 gg <- gg + facet_wrap(~Set, ncol = 2)
+# gg <- gg + theme_xkcd()
 gg
 
 png(filename="output-box.png",width=2000,height=2000)
